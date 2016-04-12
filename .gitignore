@@ -7,3 +7,5 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+/LaboSMTP-build/LaboSMTP-code/nbproject/
+/LaboSMTP/nbproject/

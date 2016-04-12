@@ -16,7 +16,7 @@ public class Prank {
     
     Prank(Group group){
         
-        
+        // Generating the prank email from Group
         
     }
 

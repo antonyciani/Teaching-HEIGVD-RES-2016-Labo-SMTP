@@ -13,10 +13,8 @@ public class Person {
     
     private String emailAddress;
     
-    Person(String emailAddress){
-        
-        
-        
+    public Person(String emailAddress){
+        this.emailAddress = emailAddress;
         
     }
 
