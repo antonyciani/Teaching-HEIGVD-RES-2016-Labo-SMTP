@@ -6,6 +6,7 @@
 package res.labosmtp.prankmail;
 
 import res.labosmtp.config.AppConfigurator;
+import res.labosmtp.smtp.*;
 
 /**
  *
@@ -25,10 +26,17 @@ public class PrankMailGenerator {
             for(String m : ac.getMessages()){
                 System.out.print(m);
             }
+            
+            
+            ClientSMTP csmtp = new ClientSMTP();
+            csmtp.connect("localhost", 2525);
+            csmtp.sendMail(null);
+            
         }
         catch(Exception e){
             e.printStackTrace();
         }
+        
         
         
         
