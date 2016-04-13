@@ -11,9 +11,9 @@ package res.labosmtp.smtp;
  */
 public class SMTPProtocol {
     
-    public static final String EHLO = "EHLO";
-    public static final String FROM = "MAIL FROM:";
-    public static final String RCPT = "RCPT TO:";
+    public static final String EHLO = "EHLO ";
+    public static final String FROM = "MAIL FROM: ";
+    public static final String RCPT = "RCPT TO: ";
     public static final String DATA = "DATA";
     public static final String ENDMSG = "\n.\n";
     
