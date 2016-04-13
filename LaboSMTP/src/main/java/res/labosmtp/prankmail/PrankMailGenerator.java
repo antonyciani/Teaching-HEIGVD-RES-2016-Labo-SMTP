@@ -38,7 +38,7 @@ public class PrankMailGenerator {
             LinkedList<Person> persons = ac.getPersons();
             
             Group group = new Group((Person[])persons.toArray());
-            Mail mail = new Mail();
+            
             
         }
         catch(Exception e){

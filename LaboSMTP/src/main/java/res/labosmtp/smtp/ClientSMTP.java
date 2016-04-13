@@ -120,6 +120,7 @@ public class ClientSMTP {
                 }
                 else if(serverMsg.substring(0,3).equals(SMTPProtocol.SEND_DATA_OK)){
                     // Send mail
+                    LOG.info("Server replied 354");
                     if(!mailDataSent){
                         out.print(mail);
                         mailDataSent = true;

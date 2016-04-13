@@ -23,7 +23,23 @@ public class Mail {
 	
     private static final String FROM_HEADER = "From: ";
     private static final String TO_HEADER = "To: ";
-	private static final String SUBJECT_HEADER = "Subject: ";
+    private static final String SUBJECT_HEADER = "Subject: ";
+    
+    
+    public Mail(String senderAddress, 
+            String message, String subject, 
+            LinkedList<String> recipientAddresses, 
+            LinkedList<String> carboncopyAddresses, 
+            LinkedList<String> blindcarboncopyAddresses) {
+        
+        this.senderAddress = senderAddress;
+        this.recipientAddresses = recipientAddresses;
+        this.carboncopyAddresses = carboncopyAddresses;
+        this.blindcarboncopyAddresses = blindcarboncopyAddresses;
+        this.message = message;
+        this.subject = subject;
+    }
+    
 
     /**
      * @return the senderAddress
