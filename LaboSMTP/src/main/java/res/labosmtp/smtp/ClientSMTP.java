@@ -13,7 +13,9 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import res.labosmtp.prankmail.Mail;
+import java.util.LinkedList;
+import res.labosmtp.prankmail.*;
+
 
 /**
  *
@@ -31,6 +33,7 @@ public class ClientSMTP {
     boolean keyReceived = false;
     int secretKey = -1;
     Scanner keyboard = new Scanner(System.in);
+    
 
 
     public void connect(String serverAddress, int serverPort) {
@@ -72,18 +75,66 @@ public class ClientSMTP {
         if(connected){
             String serverMsg = "";
             LOG.info("sending email");
-            LOG.info(SMTPProtocol.EHLO + " localhost");
-            out.println(SMTPProtocol.EHLO + " localhost");
+            LOG.info(SMTPProtocol.EHLO + "localhost");
+            out.println(SMTPProtocol.EHLO + "localhost");
             out.flush();
-            while((serverMsg = in.readLine()) != null){
+            boolean ehloSent = false;
+            boolean fromtoSent = false;
+            boolean rcptsSent = false;
+            boolean dataSent = false;
+            boolean mailDataSent = false;
+            boolean endmsgSent = false;
+            
+            LinkedList<String> rcpts = mail.getRecipientAddresses();
+                    
+            while(connected && (serverMsg = in.readLine()) != null){
                 LOG.info(serverMsg);
                 if(!serverMsg.substring(3, 4).equals("-") && serverMsg.substring(0,3).equals(SMTPProtocol.COMMAND_OK)){
                     LOG.info("Server replied 250");
+                    if(!ehloSent){
+                        ehloSent = true;
+                        if(!fromtoSent){
+                            out.println(SMTPProtocol.FROM + mail.getSenderAddress());
+                            fromtoSent = true;
+                        }
+                        else if(!rcptsSent){
+                            if(!rcpts.isEmpty()){
+                                out.println(SMTPProtocol.RCPT + rcpts.pop());
+                            }
+                            else{
+                                rcptsSent = true;
+                            }
+                            //send RCPT TO
+                        }
+                        else if(!dataSent){
+                            out.println(SMTPProtocol.DATA);
+                        }
+                        else if(endmsgSent){
+                            LOG.info("Mail sent successfully");
+                        }
+                        else{
+                            LOG.info("CHELOU");
+                        }
+                    }
                     
                 }
-                
+                else if(serverMsg.substring(0,3).equals(SMTPProtocol.SEND_DATA_OK)){
+                    // Send mail
+                    if(!mailDataSent){
+                        out.print(mail);
+                        mailDataSent = true;
+                    }
+                    else if(!endmsgSent){
+                        out.print(SMTPProtocol.ENDMSG);
+                        endmsgSent = true;
+                    }
+                    
+                }
+                else{
+                    LOG.info("Error from Server");
+                    LOG.info(serverMsg);
+                }
             }
-            
             
         }
         else{

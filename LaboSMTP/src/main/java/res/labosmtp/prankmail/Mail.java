@@ -5,6 +5,8 @@
  */
 package res.labosmtp.prankmail;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Antony
@@ -12,11 +14,16 @@ package res.labosmtp.prankmail;
 public class Mail {
     
     private String senderAddress;
-    private String[] recipientAddresses;
-    private String[] carboncopyAddresses;
-    private String[] blindcarboncopyAddresses;
-    private String subject;
+    private LinkedList<String> recipientAddresses;
+    private LinkedList<String> carboncopyAddresses;
+    private LinkedList<String> blindcarboncopyAddresses;
+    
     private String message;
+    private String subject;
+	
+    private static final String FROM_HEADER = "From: ";
+    private static final String TO_HEADER = "To: ";
+	private static final String SUBJECT_HEADER = "Subject: ";
 
     /**
      * @return the senderAddress
@@ -28,38 +35,33 @@ public class Mail {
     /**
      * @return the recipientAddresses
      */
-    public String[] getRecipientAddresses() {
+    public LinkedList<String> getRecipientAddresses() {
         return recipientAddresses;
     }
 
     /**
      * @return the carboncopyAddresses
      */
-    public String[] getCarboncopyAddresses() {
+    public LinkedList<String> getCarboncopyAddresses() {
         return carboncopyAddresses;
     }
 
     /**
      * @return the blindcarboncopyAddresses
      */
-    public String[] getBlindcarboncopyAddresses() {
+    public LinkedList<String> getBlindcarboncopyAddresses() {
         return blindcarboncopyAddresses;
     }
-
-    /**
-     * @return the subject
-     */
-    public String getSubject() {
-        return subject;
+    
+    public String toString() {
+        String recipAddr = "";
+        for (String addr : recipientAddresses) {
+            recipAddr += addr + ",";
+        }
+        return FROM_HEADER + senderAddress + "\n" + TO_HEADER + recipAddr + "\n"
+                + SUBJECT_HEADER + subject + "\n" + message;
     }
 
-    /**
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
-    }
-    
-    
+        
     
 }
