@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package res.labosmtp.smtp;
 
 /**
  *
- * @author Antony
+ * @author Ciani Antony, Hernandez Thomas
  */
 public class SMTPProtocol {
     
@@ -15,7 +10,8 @@ public class SMTPProtocol {
     public static final String FROM = "MAIL FROM: ";
     public static final String RCPT = "RCPT TO: ";
     public static final String DATA = "DATA";
-    public static final String ENDMSG = "\n.\n";
+    public static final String ENDMSG = "\r\n.\r\n";
+    public static final String QUIT = "QUIT";
     
     public static final String CONNECTION_OK = "220";
     public static final String COMMAND_OK = "250";

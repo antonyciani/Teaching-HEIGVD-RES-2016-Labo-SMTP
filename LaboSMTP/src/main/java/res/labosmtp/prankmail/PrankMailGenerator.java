@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package res.labosmtp.prankmail;
 
 import java.util.LinkedList;
@@ -11,7 +6,7 @@ import res.labosmtp.smtp.*;
 
 /**
  *
- * @author Antony
+ * @author Ciani Antony, Hernandez Thomas
  */
 public class PrankMailGenerator {
     
@@ -32,13 +27,24 @@ public class PrankMailGenerator {
             //
             ClientSMTP csmtp = new ClientSMTP();
             csmtp.connect("localhost", 2525);
-            csmtp.sendMail(null);
-            
+            System.out.println("=====================================================================================================");
             //
             LinkedList<Person> persons = ac.getPersons();
+            LinkedList<String> messages = ac.getMessages();
             
-            Group group = new Group((Person[])persons.toArray());
+            Group group = new Group(persons);
             
+            Prank prank = new Prank(group, messages);
+            
+            Mail prankMail = prank.getPrankMail();
+            csmtp.sendMail(prankMail);
+            System.out.println("=====================================================================================================");
+
+            System.out.println("ADIEU");
+            prankMail = prank.getPrankMail();
+            csmtp.sendMail(prankMail);
+            
+            csmtp.disconnect();
             
         }
         catch(Exception e){

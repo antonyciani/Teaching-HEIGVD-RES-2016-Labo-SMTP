@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package res.labosmtp.prankmail;
 
 import java.util.LinkedList;
@@ -10,25 +5,31 @@ import java.util.LinkedList;
 
 /**
  * This class generates a random group to be pranked from multiple Persons
- * @author Antony
+ *
+ * @author Ciani Antony, Hernandez Thomas
  */
 public class Group {
     
     private Person sender;
     private LinkedList<Person> recipients;
 
-    
-    public Group(Person[] persons){
+    // MODIF: PERSONS ET UNE LINKED LIST
+    public Group(LinkedList<Person> persons){
         
         // Choose a random sender
-        int senderPos = (int) (Math.random() * (persons.length - 1));
-        sender = persons[senderPos];
-        
+        int senderPos = (int) (Math.random() * (persons.size() - 1));
+        sender = persons.get(senderPos);
+        recipients = new LinkedList<>();
+        System.out.println(sender.getEmailAddress());
         // Put the other person into the recipients
-        for(int i = 0; i < persons.length; i++){
+        for(int i = 0; i < persons.size(); i++){
             if(i != senderPos){
-                recipients.add(persons[i]);
+                recipients.add(persons.get(i));
+                
             }
+        }
+        for(Person p : recipients){
+            System.out.println(p.getEmailAddress());
         }
         
     }
@@ -43,13 +44,14 @@ public class Group {
     /**
      * @return the recipients
      */
-    public LinkedList<Person> getRecipients() {
-        return recipients;
+    public LinkedList<String> getRecipientsEmails() {
+        
+        LinkedList<String> emails = new LinkedList<>();
+        for(Person p : recipients){
+            emails.add(p.getEmailAddress());
+        }
+        return emails;
     }
 
-    
-
-    
-    
     
 }

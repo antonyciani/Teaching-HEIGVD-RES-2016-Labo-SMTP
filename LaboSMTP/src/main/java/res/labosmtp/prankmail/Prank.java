@@ -1,23 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package res.labosmtp.prankmail;
+
+import java.util.LinkedList;
+import java.util.Scanner;
 
 /**
  *
- * @author Antony
+ * @author Ciani Antony, Hernandez Thomas
  */
 public class Prank {
     
     
     private Mail prankMail;
+    private Person sender;
+    private String message;
+    private String subject;
     
-    Prank(Group group){
+    Prank(Group group, LinkedList<String> messages){
         
-        // Generating the prank email from Group
+        sender = group.getSender();
+        String senderAddr = sender.getEmailAddress();
+        int messagePos = (int) (Math.random() * (messages.size() - 1));
+        message = messages.get(messagePos);
+//        Scanner sc = new Scanner(System.in);
+//        System.out.println("enter a subject :");
+//        subject = sc.nextLine();
         
+        LinkedList<String> rcptsAdresses = group.getRecipientsEmails();
+        
+        
+        prankMail = new Mail(senderAddr, message, "YOLO", rcptsAdresses);
     }
 
     /**

@@ -1,15 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package res.labosmtp.prankmail;
 
 import java.util.LinkedList;
 
 /**
  *
- * @author Antony
+ * @author Ciani Antony, Hernandez Thomas
  */
 public class Mail {
     
@@ -28,14 +23,12 @@ public class Mail {
     
     public Mail(String senderAddress, 
             String message, String subject, 
-            LinkedList<String> recipientAddresses, 
-            LinkedList<String> carboncopyAddresses, 
-            LinkedList<String> blindcarboncopyAddresses) {
+            LinkedList<String> recipientAddresses) {
         
         this.senderAddress = senderAddress;
         this.recipientAddresses = recipientAddresses;
-        this.carboncopyAddresses = carboncopyAddresses;
-        this.blindcarboncopyAddresses = blindcarboncopyAddresses;
+//        this.carboncopyAddresses = carboncopyAddresses;
+//        this.blindcarboncopyAddresses = blindcarboncopyAddresses;
         this.message = message;
         this.subject = subject;
     }
