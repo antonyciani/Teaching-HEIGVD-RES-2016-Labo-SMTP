@@ -98,8 +98,9 @@ public class ClientSMTP {
                     //ehloSent = true;
                     if (!rcptsSent) {
                         if (!rcpts.isEmpty()) {
-                            LOG.info("RCPT::::::");
-                            out.println(SMTPProtocol.RCPT + rcpts.pop());
+                            String rcpt = rcpts.pop();
+                            LOG.info(SMTPProtocol.RCPT + rcpt);
+                            out.println(SMTPProtocol.RCPT + rcpt);
                             out.flush();
                         } else {
                             LOG.info("DATA");
