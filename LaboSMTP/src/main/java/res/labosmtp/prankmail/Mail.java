@@ -22,15 +22,16 @@ public class Mail {
     
     
     public Mail(String senderAddress, 
-            String message, String subject, 
+            Message message, 
             LinkedList<String> recipientAddresses) {
         
         this.senderAddress = senderAddress;
         this.recipientAddresses = recipientAddresses;
 //        this.carboncopyAddresses = carboncopyAddresses;
 //        this.blindcarboncopyAddresses = blindcarboncopyAddresses;
-        this.message = message;
-        this.subject = subject;
+        this.subject = message.getSubject();
+        this.message = message.getMessage();
+        
     }
     
 

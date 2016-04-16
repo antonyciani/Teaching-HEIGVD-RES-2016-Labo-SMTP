@@ -1,6 +1,7 @@
 package res.labosmtp.prankmail;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 
 /**
@@ -17,7 +18,8 @@ public class Group {
     public Group(LinkedList<Person> persons){
         
         // Choose a random sender
-        int senderPos = (int) (Math.random() * (persons.size() - 1));
+        Random r = new Random();
+        int senderPos = r.nextInt(persons.size());
         sender = persons.get(senderPos);
         recipients = new LinkedList<>();
         System.out.println(sender.getEmailAddress());

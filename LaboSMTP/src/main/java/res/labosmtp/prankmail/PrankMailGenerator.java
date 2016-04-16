@@ -20,7 +20,7 @@ public class PrankMailGenerator {
                 System.out.println(p.getEmailAddress());
             }
             
-            for(String m : ac.getMessages()){
+            for(Message m : ac.getMessages()){
                 System.out.print(m);
             }
             
@@ -30,7 +30,7 @@ public class PrankMailGenerator {
             System.out.println("=====================================================================================================");
             //
             LinkedList<Person> persons = ac.getPersons();
-            LinkedList<String> messages = ac.getMessages();
+            LinkedList<Message> messages = ac.getMessages();
             
             Group group = new Group(persons);
             

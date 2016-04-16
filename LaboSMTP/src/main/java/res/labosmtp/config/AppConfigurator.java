@@ -21,7 +21,7 @@ public class AppConfigurator {
 
     private LinkedList<Group> groups;
     private LinkedList<Person> persons;
-    private LinkedList<String> messages;
+    private LinkedList<Message> messages;
 
     public AppConfigurator(String emailListFilename, String messageListFilename,
             int nbGroups) throws FileNotFoundException, IOException {
@@ -42,10 +42,13 @@ public class AppConfigurator {
         // Extracting messages list
         String message = "";
         Scanner messageReader = new Scanner(new BufferedReader(new FileReader(messageListFilename)));
-        messageReader.useDelimiter("////");
+        messageReader.useDelimiter(System.getProperty("line.separator")+ "////" + System.getProperty("line.separator"));
         while (messageReader.hasNext()) {
             message = messageReader.next();
-            messages.add(message);
+            String[] lines = message.split(System.getProperty("line.separator"));
+            String subject = lines[0];
+            message = message.substring(message.indexOf(System.getProperty("line.separator")));
+            messages.add(new Message(subject, message));
         }        
 
     }
@@ -67,7 +70,7 @@ public class AppConfigurator {
     /**
      * @return the messages
      */
-    public LinkedList<String> getMessages() {
+    public LinkedList<Message> getMessages() {
         return messages;
     }
     
