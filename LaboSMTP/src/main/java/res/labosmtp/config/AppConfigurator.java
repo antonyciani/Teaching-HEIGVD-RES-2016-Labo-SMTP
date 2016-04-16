@@ -22,6 +22,7 @@ public class AppConfigurator {
     private LinkedList<Group> groups;
     private LinkedList<Person> persons;
     private LinkedList<Message> messages;
+    private static final int MIN_NB_GROUP_SIZE = 3; // Should be at least 2
 
     public AppConfigurator(String emailListFilename, String messageListFilename,
             int nbGroups) throws FileNotFoundException, IOException {
@@ -42,14 +43,27 @@ public class AppConfigurator {
         // Extracting messages list
         String message = "";
         Scanner messageReader = new Scanner(new BufferedReader(new FileReader(messageListFilename)));
-        messageReader.useDelimiter(System.getProperty("line.separator")+ "////" + System.getProperty("line.separator"));
+        messageReader.useDelimiter(System.getProperty("line.separator") + "////" + System.getProperty("line.separator"));
         while (messageReader.hasNext()) {
             message = messageReader.next();
             String[] lines = message.split(System.getProperty("line.separator"));
             String subject = lines[0];
             message = message.substring(message.indexOf(System.getProperty("line.separator")));
             messages.add(new Message(subject, message));
-        }        
+        }
+
+        // Creating groups
+        if((persons.size() / nbGroups) < MIN_NB_GROUP_SIZE) {
+            throw new RuntimeException("Email list is too short, or number of groups is too big, minimum 3 emails per group!");
+        }
+        
+        for (int i = 0; i < nbGroups; i++) {
+            LinkedList<Person> newGroup = new LinkedList<>();
+            for (int j = i*(persons.size() / nbGroups); j < i*(persons.size() / nbGroups) + (persons.size() / nbGroups); j++) {
+                newGroup.add(persons.get(j));
+            }
+            groups.add(new Group(newGroup));
+        }
 
     }
 
@@ -73,8 +87,5 @@ public class AppConfigurator {
     public LinkedList<Message> getMessages() {
         return messages;
     }
-    
-    
-    
 
 }

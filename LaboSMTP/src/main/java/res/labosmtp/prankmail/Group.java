@@ -14,24 +14,20 @@ public class Group {
     private Person sender;
     private LinkedList<Person> recipients;
 
-    // MODIF: PERSONS ET UNE LINKED LIST
     public Group(LinkedList<Person> persons){
         
         // Choose a random sender
         Random r = new Random();
         int senderPos = r.nextInt(persons.size());
         sender = persons.get(senderPos);
+        
         recipients = new LinkedList<>();
-        System.out.println(sender.getEmailAddress());
         // Put the other person into the recipients
         for(int i = 0; i < persons.size(); i++){
             if(i != senderPos){
                 recipients.add(persons.get(i));
                 
             }
-        }
-        for(Person p : recipients){
-            System.out.println(p.getEmailAddress());
         }
         
     }

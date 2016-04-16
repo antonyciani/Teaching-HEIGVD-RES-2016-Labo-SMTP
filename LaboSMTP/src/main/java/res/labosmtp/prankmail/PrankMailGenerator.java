@@ -10,39 +10,50 @@ import res.labosmtp.smtp.*;
  */
 public class PrankMailGenerator {
     
-    
     public static void main(String[] args) {
         try{
-            AppConfigurator ac = new AppConfigurator("emails.txt", "messages.txt", 0);
             
-            //
-            for(Person p : ac.getPersons()){
-                System.out.println(p.getEmailAddress());
+            int nbGroups = 1;
+            String emailsListPath = "emails.txt";
+            String messagesListPath = "messages.txt";
+            
+            if(args.length > 0){
+                
+                if(args.length == 1){
+                    nbGroups = Integer.parseInt(args[0]);
+                }
+                else if(args.length == 3){
+
+                    emailsListPath = args[0];
+                    messagesListPath = args[1];
+                    nbGroups = Integer.parseInt(args[2]);
+                }
             }
             
-            for(Message m : ac.getMessages()){
-                System.out.print(m);
-            }
+            AppConfigurator ac = new AppConfigurator(emailsListPath, messagesListPath, nbGroups);                      
+            LinkedList<Person> persons = ac.getPersons();
+            LinkedList<Message> messages = ac.getMessages();
+            LinkedList<Group> groups = ac.getGroups();
             
-            //
             ClientSMTP csmtp = new ClientSMTP();
             csmtp.connect("localhost", 2525);
             System.out.println("=====================================================================================================");
-            //
-            LinkedList<Person> persons = ac.getPersons();
-            LinkedList<Message> messages = ac.getMessages();
             
-            Group group = new Group(persons);
+            for(Group g : groups){
+                System.out.println("Group:");
+                System.out.println(g.getSender().getEmailAddress());
+                for(String email : g.getRecipientsEmails()){
+                    System.out.println(email);
+                }
+                System.out.println("=========================================");
+                Prank prank = new Prank(g, messages);
+                Mail prankMail = prank.getPrankMail();
+                csmtp.sendMail(prankMail);
+                System.out.println("=========================================");
+                
+            }
             
-            Prank prank = new Prank(group, messages);
-            
-            Mail prankMail = prank.getPrankMail();
-            csmtp.sendMail(prankMail);
             System.out.println("=====================================================================================================");
-
-            System.out.println("ADIEU");
-            prankMail = prank.getPrankMail();
-            csmtp.sendMail(prankMail);
             
             csmtp.disconnect();
             
