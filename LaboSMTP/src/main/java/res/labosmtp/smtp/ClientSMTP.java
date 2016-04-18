@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.LinkedList;
@@ -36,20 +35,16 @@ public class ClientSMTP {
                 LOG.info(serverMsg);
 
                 if (!serverMsg.substring(3, 4).equals("-") && serverMsg.substring(0, 3).equals(SMTPProtocol.CONNECTION_OK)) {
-                    LOG.info("Server replied 220");
-
                     boolean ehloSent = false;
-                    LOG.info("saying ehlo");
+                    LOG.info("EHLO");
                     out.println(SMTPProtocol.EHLO + "localhost");
                     out.flush();
                     while (!ehloSent && (serverMsg = in.readLine()) != null) {
-
+                        LOG.info(serverMsg);
                         if (!serverMsg.substring(3, 4).equals("-") && serverMsg.substring(0, 3).equals(SMTPProtocol.COMMAND_OK)) {
                             ehloSent = true;
                         } 
-
                     }
-
                     connected = true;
                     return;
                 }
@@ -84,7 +79,7 @@ public class ClientSMTP {
             boolean mailDataSent = false;
             boolean endmsgSent = false;
             String serverMsg = "";
-            LOG.info("sending email");
+            LOG.info("Sending email");
 
             LinkedList<String> rcpts = new LinkedList<>(mail.getRecipientAddresses());
             out.println(SMTPProtocol.FROM + mail.getSenderAddress());
@@ -92,10 +87,8 @@ public class ClientSMTP {
             fromtoSent = true;
             while (connected && (serverMsg = in.readLine()) != null) {
                 LOG.info(serverMsg);
-                if (/*!serverMsg.substring(3, 4).equals("-") &&*/serverMsg.substring(0, 3).equals(SMTPProtocol.COMMAND_OK)) {
-                    LOG.info("Server replied 250");
-
-                    //ehloSent = true;
+                if (serverMsg.substring(0, 3).equals(SMTPProtocol.COMMAND_OK)) {
+                    
                     if (!rcptsSent) {
                         if (!rcpts.isEmpty()) {
                             String rcpt = rcpts.pop();
@@ -108,7 +101,6 @@ public class ClientSMTP {
                             out.flush();
                             rcptsSent = true;
                         }
-                        //send RCPT TO
 
                     } else if (!endmsgSent) {
 
@@ -116,13 +108,10 @@ public class ClientSMTP {
                         endmsgSent = true;
                         return;
 
-                    } else {
-                        LOG.info("CHELOU");
                     }
-
+                    
                 } else if (serverMsg.substring(0, 3).equals(SMTPProtocol.SEND_DATA_OK)) {
-                    // Send mail
-                    LOG.info("Server replied 354");
+                    // Send mail data
                     if (!mailDataSent) {
                         LOG.info(mail.toString());
                         out.print(mail);
@@ -136,6 +125,7 @@ public class ClientSMTP {
                 } else {
                     LOG.info("Error from Server");
                     LOG.info(serverMsg);
+                    throw new RuntimeException("Server replied with an error!");
                 }
             }
 

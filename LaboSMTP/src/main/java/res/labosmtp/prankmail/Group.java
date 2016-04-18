@@ -21,8 +21,8 @@ public class Group {
         int senderPos = r.nextInt(persons.size());
         sender = persons.get(senderPos);
         
+        // Put the other persons into the recipients list
         recipients = new LinkedList<>();
-        // Put the other person into the recipients
         for(int i = 0; i < persons.size(); i++){
             if(i != senderPos){
                 recipients.add(persons.get(i));
@@ -40,7 +40,7 @@ public class Group {
     }
 
     /**
-     * @return the recipients
+     * @return the recipients emails
      */
     public LinkedList<String> getRecipientsEmails() {
         

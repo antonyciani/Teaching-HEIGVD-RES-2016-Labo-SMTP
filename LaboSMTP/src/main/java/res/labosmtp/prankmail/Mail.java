@@ -10,8 +10,6 @@ public class Mail {
     
     private String senderAddress;
     private LinkedList<String> recipientAddresses;
-    private LinkedList<String> carboncopyAddresses;
-    private LinkedList<String> blindcarboncopyAddresses;
     
     private String message;
     private String subject;
@@ -27,13 +25,10 @@ public class Mail {
         
         this.senderAddress = senderAddress;
         this.recipientAddresses = recipientAddresses;
-//        this.carboncopyAddresses = carboncopyAddresses;
-//        this.blindcarboncopyAddresses = blindcarboncopyAddresses;
         this.subject = message.getSubject();
         this.message = message.getMessage();
         
     }
-    
 
     /**
      * @return the senderAddress
@@ -47,20 +42,6 @@ public class Mail {
      */
     public LinkedList<String> getRecipientAddresses() {
         return recipientAddresses;
-    }
-
-    /**
-     * @return the carboncopyAddresses
-     */
-    public LinkedList<String> getCarboncopyAddresses() {
-        return carboncopyAddresses;
-    }
-
-    /**
-     * @return the blindcarboncopyAddresses
-     */
-    public LinkedList<String> getBlindcarboncopyAddresses() {
-        return blindcarboncopyAddresses;
     }
     
     public String toString() {
