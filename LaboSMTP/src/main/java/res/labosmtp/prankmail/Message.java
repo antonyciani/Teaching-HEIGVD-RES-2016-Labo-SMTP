@@ -1,21 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package res.labosmtp.prankmail;
 
 import javax.security.auth.Subject;
 
 /**
  *
- * @author Antony
+ * This class represents an email message (Subject + actual message)
+ * @author Ciani Antony, Hernandez Thomas
  */
 public class Message {
     
     private String subject;
     private String message;
     
+    /**
+     * 
+     * Simply encapsulates the fields for a mor comfortable use
+     * 
+     * @param subject
+     * @param message 
+     */
     public Message(String subject, String message){
         
         this.subject = subject;

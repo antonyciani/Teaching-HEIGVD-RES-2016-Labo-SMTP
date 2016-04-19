@@ -3,7 +3,11 @@ package res.labosmtp.prankmail;
 import java.util.LinkedList;
 
 /**
- *
+ * This class represents all the information needed to send an email
+ * The sender address, the various recipients addresses, the subject of the message
+ * and the message itself.
+ * 
+ * 
  * @author Ciani Antony, Hernandez Thomas
  */
 public class Mail {

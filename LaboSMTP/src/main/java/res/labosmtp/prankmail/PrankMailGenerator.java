@@ -31,6 +31,7 @@ import res.labosmtp.smtp.*;
  */
 public class PrankMailGenerator {
 
+    
     public static void main(String[] args) {
 
         try {
@@ -59,7 +60,8 @@ public class PrankMailGenerator {
                 serverPort = Integer.parseInt(prop.getProperty("serverport"));
 
             } catch (IOException ex) {
-                ex.printStackTrace();
+                System.out.println("appconfing.properties couldn't be loaded, using defaults values");
+                //ex.printStackTrace();
             }
 
             AppConfigurator ac = new AppConfigurator(emailsListPath, messagesListPath, nbGroups);
@@ -74,8 +76,8 @@ public class PrankMailGenerator {
             for (Group g : groups) {
                 groupCounter++;
                 System.out.println("Group: " + groupCounter);
-                System.out.println(g.getSender().getEmailAddress());
-                
+                System.out.println("Sender: " + g.getSenderEmail());
+                System.out.println("Recipients: ");
                 for (String email : g.getRecipientsEmails()) {
                     System.out.println(email);
                 }
@@ -93,7 +95,7 @@ public class PrankMailGenerator {
             csmtp.disconnect();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
 
     }

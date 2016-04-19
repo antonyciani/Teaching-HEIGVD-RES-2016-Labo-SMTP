@@ -11,6 +11,9 @@ import java.util.LinkedList;
 import res.labosmtp.prankmail.*;
 
 /**
+ * This class is used to connect to an SMTP server to send them emails. In our case,
+ * an email is represented by a Mail object which contains all the information
+ * required to send an email.
  *
  * @author Ciani Antony, Hernandez Thomas
  */
@@ -22,10 +25,21 @@ public class ClientSMTP {
     BufferedReader in;
     PrintWriter out;
     boolean connected = false;
-    
 
+
+    
+    /**
+     * This method enables the connection to an SMTP server designated by its IP or
+     * DNS name and the port on which it is listening In addition to creating a
+     * socket, the method performs the EHLO phase which is necessary to begin sending
+     * emails to the server
+     * 
+     * @param serverAddress
+     * @param serverPort 
+     */
     public void connect(String serverAddress, int serverPort) {
         try {
+
             clientSocket = new Socket(serverAddress, serverPort);
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             out = new PrintWriter(clientSocket.getOutputStream());
@@ -43,7 +57,7 @@ public class ClientSMTP {
                         LOG.info(serverMsg);
                         if (!serverMsg.substring(3, 4).equals("-") && serverMsg.substring(0, 3).equals(SMTPProtocol.COMMAND_OK)) {
                             ehloSent = true;
-                        } 
+                        }
                     }
                     connected = true;
                     return;
@@ -58,8 +72,15 @@ public class ClientSMTP {
         }
 
     }
-
-    public void disconnect() throws IOException{
+    
+    /**
+     * 
+     * This method performs the disconnection from the SMTP server, it first send the
+     * QUIT command to the server and then closes its Streams and Socket
+     * 
+     * @throws IOException 
+     */
+    public void disconnect() throws IOException {
         LOG.log(Level.INFO, "You requested to be disconnected.");
         out.println(SMTPProtocol.QUIT);
         out.flush();
@@ -68,14 +89,23 @@ public class ClientSMTP {
         out.println();
         cleanup();
     }
-
+    
+    /**
+     * 
+     * This method alllows to send an email to the SMTP server. The Mail object
+     * contains the various information needed to send the mail. The client must
+     * first have connected to the server before, otherwise a RuntimeException is
+     * thrown. In the case the server responds with a code other than the codes
+     * needed (see SMTPProtocol), it throws a RuntimeException
+     * 
+     * @param mail
+     * @throws IOException 
+     */
     public void sendMail(Mail mail) throws IOException {
 
         if (connected) {
-            boolean ehloSent = false;
-            boolean fromtoSent = false;
+
             boolean rcptsSent = false;
-            boolean dataSent = false;
             boolean mailDataSent = false;
             boolean endmsgSent = false;
             String serverMsg = "";
@@ -84,11 +114,11 @@ public class ClientSMTP {
             LinkedList<String> rcpts = new LinkedList<>(mail.getRecipientAddresses());
             out.println(SMTPProtocol.FROM + mail.getSenderAddress());
             out.flush();
-            fromtoSent = true;
+
             while (connected && (serverMsg = in.readLine()) != null) {
                 LOG.info(serverMsg);
                 if (serverMsg.substring(0, 3).equals(SMTPProtocol.COMMAND_OK)) {
-                    
+
                     if (!rcptsSent) {
                         if (!rcpts.isEmpty()) {
                             String rcpt = rcpts.pop();
@@ -109,7 +139,7 @@ public class ClientSMTP {
                         return;
 
                     }
-                    
+
                 } else if (serverMsg.substring(0, 3).equals(SMTPProtocol.SEND_DATA_OK)) {
                     // Send mail data
                     if (!mailDataSent) {
@@ -135,6 +165,11 @@ public class ClientSMTP {
 
     }
 
+    /**
+     *
+     * This method closes the streams and the socket
+     * 
+     */
     private void cleanup() {
 
         try {

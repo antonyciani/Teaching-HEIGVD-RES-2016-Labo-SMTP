@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package res.labosmtp.config;
 
 import java.io.BufferedReader;
@@ -14,8 +9,14 @@ import java.util.Scanner;
 import res.labosmtp.prankmail.*;
 
 /**
- *
- * @author Antony
+ * This class is used to retrieve a file with a list of emails and
+ * a file with a list of messages and create a certain number of Groups
+ * with the emails list. The Groups and the messages are passed to the main
+ * class which puts together this information to generate pranks and send them
+ * 
+ * @author Ciani Antony, Hernandez Thomas
+ * 
+ * 
  */
 public class AppConfigurator {
 
@@ -24,6 +25,24 @@ public class AppConfigurator {
     private LinkedList<Message> messages;
     private static final int MIN_NB_GROUP_SIZE = 3; // Should be at least 2
 
+    
+    /**
+     * 
+     * For each line in the emailsList file, extracts the email and creates 
+     * a Person object and stores it to a list.
+     * The messagesList file is parsed to retrieve each subject and the message to
+     * create a Message object and store it to a list. The separation between
+     * messages is made by "////", the first line of the text in between this mark
+     * is considered to be the subject of the message
+     * After that, Group objects are created using the list of Persons
+     * and stored to a list
+     * 
+     * @param emailListFilename
+     * @param messageListFilename
+     * @param nbGroups
+     * @throws FileNotFoundException
+     * @throws IOException 
+     */
     public AppConfigurator(String emailListFilename, String messageListFilename,
             int nbGroups) throws FileNotFoundException, IOException {
 

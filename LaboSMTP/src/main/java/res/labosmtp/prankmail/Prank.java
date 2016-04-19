@@ -5,10 +5,11 @@ import java.util.Random;
 import java.util.Scanner;
 
 /**
- *
+ *  This class is used to generate a prank email.
+ *  It takes a group and select a random message from a list and build
+ *  the resulting Mail object
+ * 
  * @author Ciani Antony, Hernandez Thomas
- * 
- * 
  * 
  */
 public class Prank {
@@ -18,11 +19,16 @@ public class Prank {
     private Person sender;
     private Message message;
     
-    
+    /**
+     * Generates a Mail object from the addresses contained in the Group object and
+     * a randomly picked message in the list
+     * 
+     * @param group
+     * @param messages 
+     */
     Prank(Group group, LinkedList<Message> messages){
         
-        sender = group.getSender();
-        String senderAddr = sender.getEmailAddress();
+        String senderAddr = group.getSenderEmail();
         Random r = new Random();
         int messagePos = r.nextInt(messages.size());
         message = messages.get(messagePos);

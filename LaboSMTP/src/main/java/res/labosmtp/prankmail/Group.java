@@ -5,8 +5,7 @@ import java.util.Random;
 
 
 /**
- * This class generates a random group to be pranked from multiple Persons
- *
+ * This class represents a group of persons to prank (a sender and a list of recipients)
  * @author Ciani Antony, Hernandez Thomas
  */
 public class Group {
@@ -14,6 +13,11 @@ public class Group {
     private Person sender;
     private LinkedList<Person> recipients;
 
+    /**
+     * Picks a random sender and stores the other Persons into the recipients list
+     * 
+     * @param persons 
+     */
     public Group(LinkedList<Person> persons){
         
         // Choose a random sender
@@ -35,8 +39,8 @@ public class Group {
     /**
      * @return the sender
      */
-    public Person getSender() {
-        return sender;
+    public String getSenderEmail() {
+        return sender.getEmailAddress();
     }
 
     /**
