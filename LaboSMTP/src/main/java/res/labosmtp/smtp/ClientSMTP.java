@@ -120,7 +120,7 @@ public class ClientSMTP {
                 if (serverMsg.substring(0, 3).equals(SMTPProtocol.COMMAND_OK)) {
 
                     if (!rcptsSent) {
-                        if (!rcpts.isEmpty()) {
+                        if (!rcpts.isEmpty()) { // send the RCPT TO: command for each recipient
                             String rcpt = rcpts.pop();
                             LOG.info(SMTPProtocol.RCPT + rcpt);
                             out.println(SMTPProtocol.RCPT + rcpt);

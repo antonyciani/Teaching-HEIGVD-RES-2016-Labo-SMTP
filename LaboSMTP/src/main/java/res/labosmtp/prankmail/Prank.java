@@ -2,7 +2,7 @@ package res.labosmtp.prankmail;
 
 import java.util.LinkedList;
 import java.util.Random;
-import java.util.Scanner;
+
 
 /**
  *  This class is used to generate a prank email.

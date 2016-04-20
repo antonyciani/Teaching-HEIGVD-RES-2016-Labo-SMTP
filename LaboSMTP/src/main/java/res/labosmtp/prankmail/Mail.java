@@ -48,6 +48,13 @@ public class Mail {
         return recipientAddresses;
     }
     
+    
+    /**
+     * This method generates the "body(what we actually send after the DATA command)
+     * of the email to be sent
+     * 
+     * @return the email data to be sent
+     */
     public String toString() {
         String recipAddr = "";
         for (String addr : recipientAddresses) {

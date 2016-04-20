@@ -36,6 +36,8 @@ public class PrankMailGenerator {
 
         try {
 
+            // Default values for configuration in case the properties file
+            // cannot be found
             int nbGroups = 1;
             String emailsListPath = "emails.txt";
             String messagesListPath = "messages.txt";
@@ -44,6 +46,7 @@ public class PrankMailGenerator {
 
             Properties prop = new Properties();
 
+            // Retrieving information from properties file
             try {
 
                 String filename = "appconfig.properties";
@@ -64,15 +67,20 @@ public class PrankMailGenerator {
                 //ex.printStackTrace();
             }
 
+            // retrieving the emails list and the messages and forming groups
             AppConfigurator ac = new AppConfigurator(emailsListPath, messagesListPath, nbGroups);
 
             LinkedList<Message> messages = ac.getMessages();
             LinkedList<Group> groups = ac.getGroups();
 
+            // Connecting to the SMTP server
             ClientSMTP csmtp = new ClientSMTP();
             csmtp.connect(serverAddress, serverPort);
             System.out.println("=====================================================================================================");
+            
             int groupCounter = 0;
+            
+            // Sending emails for each group created
             for (Group g : groups) {
                 groupCounter++;
                 System.out.println("Group: " + groupCounter);
@@ -89,9 +97,9 @@ public class PrankMailGenerator {
                 System.out.println("=========================================");
 
             }
-
+            
+            // Disconnecting from server
             System.out.println("=====================================================================================================");
-
             csmtp.disconnect();
 
         } catch (Exception e) {
