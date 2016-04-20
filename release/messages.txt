@@ -1,0 +1,16 @@
+Test du Labo RES
+Bonjour,
+Ceci est un test du Labo SMTP du cours RES.
+
+Meilleures salutations,
+
+Barack Obama
+////
+Test du Labo RES
+Bonjour,
+Ceci est un test du Labo SMTP du cours RES.
+
+Meilleures salutations,
+
+Batman
+////
