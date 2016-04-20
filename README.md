@@ -4,20 +4,83 @@
 
 ![trollface](figures/Trollface.png)
 
-## Deliverables
+## Description
+
+This project is an implementation of a client application (TCP) in java that automatically plays pranks on a list of victims. A partial implementation of the SMTP protocol is also used. The client can communicate with a SMTP server through Sockets.
+
+Basicaly, you can edit the emails.txt file with your own mailing list, which will define the list of victims. You can also edit the messages.txt file with your own messages. When a prank is played, one of this message is selected to be the data of your mail. Finally, you can set the properties to define how many groups of victims should be formed. For each group, there is 1 sender and at least 2 recipients.
+
+## Example
+
+Here is a simple exemple: consider that the program generates a group G from a list of 4 victims. The group sender is Bob and the recipients are Alice, Mallory and Jean-Kevin. When the prank is played on group G, then one of the fake messages is picked. The program communicates with a SMTP server so that Alice, Mallory and Jean-Kevin receive a mail, which appears to be sent by Bob.
+
+## Configuration
+
+In order to run a prank campaign, you need to configure the following files:
+
+- appconfig.properties
+
+	this file contains the following fields:
+
+	![protocol](figures/protocol.png)
+
+	*smtpserveraddress*: the address of the SMTP server you want to use
+	
+	*serverport*: the port's number you want to connect to, in order to reach the SMTP server.
+
+	*nbgroups*: the number of group you want
+
+	*emailspath*: the file that contains your victims' mails.
+
+	*messagespath*: the file that contains the text of the mails.
+
+- emails.txt
+
+	this file contains the e-mail addresses of your victims. You just need to write your own addresses. The only condition is to write one address per line.
+
+- messages.txt
+
+	this files contains the messages you will send to your victims. You write your own messages but the file must have this format:
+
+	![messages](figures/messages.png)
+
+	where the first line is the subject and each message must be seperated with ////
+
+## Implementation
+
+Our implementation almost follows the class diagram showed in the following webcast:[https://www.youtube.com/watch?v=OrSdRCt_6YQ](https://www.youtube.com/watch?v=OrSdRCt_6YQ). We only added 2 classes:
+
+- *Message*: it simply represents an email message (Subject + message).
+
+- *AppConfigurator*: it retrieves the messages and the emails from the corresponding files and also creates a certain number of groups. Thus, it generates the informations needed for a prank.
+
+Moreover, the next two classes need a special focus regarding their responsibilities in our implementation:
+
+- *PrankMailGenerator*: the main program who first reads the configuration file and do the setup. Then, it forms random groups depending on the properties and if the number of emails addresses is not enough (less than 3) it stops and warns the user. Finally, a prank is generated with a random message and sent with our SMTP client.
+
+- *ClientSMTP*: allows a connection to a SMTP server in order to send emails. Once connected, our SMTP protocol "like" is used to perform the job and verify its good behavior.
+
+Here below you can see an exemple of dialogue between our client and a SMTP server:
+
+![dialogue](figures/dialogue.png)
+  
 
 
-The images should be placed in a figures directory.
+## Installing and using a mock SMTP server
 
-Your report should include the following sections:
 
-A brief description of your project: if people exploring GitHub find your repo, without a prior knowledge of the RES course, they should be able to understand what your repo is all about and whether they should look at it more closely.
+If you want to experiment with our tool, without "really" sending mails immediately, you can first try it with a mock SMTP server. It means that you will be connected to this server instead of a "real" one. Thus, your victims won't receive your emails, but you will be able to read them and check if everything is ready for your prank.
 
-Clear and simple instructions for configuring your tool and running a prank campaign. If you do a good job, an external user should be able to clone your repo, edit a couple of files and send a batch of e-mails in less than 10 minutes.
+**How to install**
 
-A concise description of your implementation: document the key aspects of your code. It is probably a good idea to start with a class diagram. Decide which classes you want to show (focus on the important ones) and describe their responsibilities in text. It is also certainly a good idea to include examples of dialogues between your client and a SMTP server (maybe you also want to include some screenshots here).
+1. Click on this link: [https://github.com/tweakers-dev/MockMock](https://github.com/tweakers-dev/MockMock)
+2. Download the MockMock.jar
+3. Unzip it! (remember the directory)
 
-Instructions for installing and using a mock SMTP server. The user who wants to experiment with your tool but does not really want to send pranks immediately should be able to use a mock SMTP server. For people who are not familiar with this concept, explain it to them in simple terms. Explain which mock server you have used and how you have set it up.
+**How to use**
 
+1. Open a terminal and go to the directory where you have unzipped the .jar
+2. Run the following command: `java -jar MockMock.jar `
+3. 
 
 
