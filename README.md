@@ -69,15 +69,19 @@ Here below you can see the class diagram of our implementation:
 
 ![uml](figures/uml.jpg)
 
-- *Message*: it simply represents an email message (Subject + message).
+Three distincts group are showed on this diagram, depending on the classes' job. On the left, all the classes around our main class (PrankMailGenerator) are dedicated to the generation of the prank mails. On the top right, the ClientSMTP class manages the connexion to a SMTP server with the help of our SMTP protocol. The class that contains our protocol is not visible on the diagram because it only contains static Strings which represent the behavior of our protocol. On the bottom right, the AppConfigurator is the tool that can extract all the informations needed in order to generate a prank.
+
+Moreover, the next few classes need a special focus regarding their responsibilities in our implementation:
 
 - *AppConfigurator*: it retrieves the messages and the emails from the corresponding files and also creates a certain number of groups. Thus, it generates the informations needed for a prank.
-
-Moreover, the next two classes need a special focus regarding their responsibilities in our implementation:
 
 - *PrankMailGenerator*: the main program who first reads the configuration file and do the setup. Then, it forms random groups depending on the properties and if the number of emails addresses is not enough (less than 3) it stops and warns the user. Finally, a prank is generated with a random message and sent with our SMTP client.
 
 - *ClientSMTP*: allows a connection to a SMTP server in order to send emails. Once connected, our SMTP protocol "like" is used to perform the job and verify its good behavior.
+
+- *Prank*: Generates a prank email. It takes a group, select a random message from a list and build the resulting Mail object.
+
+- *Mail*: Represents all the information needed to send an email. The sender address, the various recipients addresses, the subject of the message and the message itself.
 
 Here below you can see an exemple of dialogue between our client and a SMTP server:
 
@@ -95,7 +99,7 @@ If you want to experiment with our tool, without "really" sending mails immediat
 1. Click on this link: [https://github.com/tweakers-dev/MockMock](https://github.com/tweakers-dev/MockMock/release)
 2. Download the MockMock.jar file
 3. Run the JAR file using this command by opening a terminal in the directory where it is stored. `java -jar MockMock.jar `
-3. This launches and STMP server on port 25 and an HTTP server on port 8282
+3. This launches a STMP server on port 25 and an HTTP server on port 8282
 4. Open a browser and go to [http://localhost:8282] (http://localhost:8282) to see if you have any new mails!
 
 
