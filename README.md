@@ -88,7 +88,7 @@ Here below you can see an exemple of dialogue between our client and a SMTP serv
 ## Installing and using a mock SMTP server
 
 
-If you want to experiment with our tool, without "really" sending mails immediately, you can first try it with a mock SMTP server. It means that you will be connected to this server instead of a "real" one. Thus, your victims won't receive your emails, but you will be able to read them and check if everything is ready for your prank.
+If you want to experiment with our tool, without "really" sending mails immediately, you can first try it with a mock SMTP server. It means that you will be connected to this server, which run on your machine, instead of a "real" one. Thus, your victims won't receive your emails, but you will be able to read them and check if everything is ready for your prank.
 
 **Installing MockMock**
 
@@ -99,3 +99,6 @@ If you want to experiment with our tool, without "really" sending mails immediat
 4. Open a browser and go to [http://localhost:8282] (http://localhost:8282) to see if you have any new mails!
 
 
+## Disclaimer
+
+This application has been developed for educational purposes only. The authors disclaim any responsibility fromd damage it may cause by using it with servers you are not allowed to use and by causing collateral damages such as losing all your friends because they don't have enough sense of humor or that your pranks where really bad.
