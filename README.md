@@ -37,7 +37,7 @@ In order to run a prank campaign, you need to configure the following files:
 
 - **appconfig.properties**
 
-	this file contains the following fields:
+	This file contains the following fields:
 
 	![protocol](figures/protocol.PNG)
 
@@ -53,11 +53,11 @@ In order to run a prank campaign, you need to configure the following files:
 
 - **emails.txt**
 
-	this file contains the e-mail addresses of your victims. You just need to write your own addresses. The only condition is to write one address per line.
+	This file contains the e-mail addresses of your victims. You just need to write your own addresses. The only condition is to write one address per line.
 
 - **messages.txt**
 
-	this files contains the messages you will send to your victims. You write your own messages but the file must have this format:
+	This files contains the messages you will send to your victims. You write your own messages but the file must have this format:
 
 	![messages](figures/messages.PNG)
 
