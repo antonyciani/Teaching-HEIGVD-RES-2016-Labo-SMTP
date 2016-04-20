@@ -13,9 +13,9 @@ Basically, you can edit the emails.txt file with your own mailing list, which wi
 
 Here is a simple exemple: consider that the program generates a group G from a list of 4 victims. The group sender is Bob and the recipients are Alice, Mallory and Jean-Kevin. When the prank is played on group G, then one of the fake messages is picked. The program communicates with a SMTP server so that Alice, Mallory and Jean-Kevin receive a mail, which appears to be sent by Bob.
 
-## Installation
+# Installation
 
-# Easy
+- **Easy**
 
 1. Download the content of the release folder
 2. Proceed to Configuration step by modifying the provided files (see below)
@@ -23,7 +23,7 @@ Here is a simple exemple: consider that the program generates a group G from a l
 4. Open a terminal and run the JAR file (`java -jar LaboSMTP-1.0-SNAPSHOT-launcher.jar`)
 5. Enjoy!
 
-# Pro
+- **Pro**
 
 1. Clone this repo on your computer
 2. Open the Maven project contained in the LaboSMTP folder
