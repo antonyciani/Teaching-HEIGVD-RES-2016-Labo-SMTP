@@ -67,7 +67,7 @@ In order to run a prank campaign, you need to configure the following files:
 
 Here below you can see the class diagram of our implementation:
 
-![uml](figures/uml.jpg)
+![diagram](figures/diagram.jpg)
 
 Three distincts group are showed on this diagram, depending on the classes' job. On the left, all the classes around our main class (PrankMailGenerator) are dedicated to the generation of the prank mails. On the top right, the ClientSMTP class manages the connexion to a SMTP server with the help of our SMTP protocol. The class that contains our protocol is not visible on the diagram because it only contains static Strings which represent the behavior of our protocol. On the bottom right, the AppConfigurator is the tool that can extract all the informations needed in order to generate a prank.
 
