@@ -21,6 +21,7 @@ Here is a simple exemple: consider that the program generates a group G from a l
 2. Proceed to Configuration step by modifying the provided files (see below)
 3. Run MockMock (optional, see below)
 4. Open a terminal and run the JAR file: `java -jar LaboSMTP-1.0-SNAPSHOT-launcher.jar`
+5. Enjoy!
 
 - **Pro**
 
