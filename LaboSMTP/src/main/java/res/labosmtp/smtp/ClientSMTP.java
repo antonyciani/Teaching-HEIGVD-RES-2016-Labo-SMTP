@@ -14,17 +14,16 @@ import res.labosmtp.prankmail.*;
  * This class is used to connect to an SMTP server to send them emails. In our case,
  * an email is represented by a Mail object which contains all the information
  * required to send an email.
- *
  * @author Ciani Antony, Hernandez Thomas
  */
 public class ClientSMTP {
 
     private static final Logger LOG = Logger.getLogger(ClientSMTP.class.getName());
 
-    Socket clientSocket;
-    BufferedReader in;
-    PrintWriter out;
-    boolean connected = false;
+    private Socket clientSocket;
+    private BufferedReader in;
+    private PrintWriter out;
+    private boolean connected = false;
 
 
     

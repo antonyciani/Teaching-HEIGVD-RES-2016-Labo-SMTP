@@ -16,7 +16,6 @@ import res.labosmtp.prankmail.*;
  * 
  * @author Ciani Antony, Hernandez Thomas
  * 
- * 
  */
 public class AppConfigurator {
 

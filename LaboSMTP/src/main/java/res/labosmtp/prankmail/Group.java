@@ -6,6 +6,7 @@ import java.util.Random;
 
 /**
  * This class represents a group of persons to prank (a sender and a list of recipients)
+ * 
  * @author Ciani Antony, Hernandez Thomas
  */
 public class Group {

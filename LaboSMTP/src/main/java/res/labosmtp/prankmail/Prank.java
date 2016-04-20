@@ -8,7 +8,6 @@ import java.util.Random;
  *  This class is used to generate a prank email.
  *  It takes a group and select a random message from a list and build
  *  the resulting Mail object
- * 
  * @author Ciani Antony, Hernandez Thomas
  * 
  */

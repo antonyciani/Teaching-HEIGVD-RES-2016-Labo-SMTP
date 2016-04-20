@@ -3,8 +3,8 @@ package res.labosmtp.prankmail;
 import javax.security.auth.Subject;
 
 /**
- *
  * This class represents an email message (Subject + actual message)
+ * 
  * @author Ciani Antony, Hernandez Thomas
  */
 public class Message {

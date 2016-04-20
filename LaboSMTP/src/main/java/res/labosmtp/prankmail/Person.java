@@ -2,7 +2,6 @@ package res.labosmtp.prankmail;
 
 /**
  * This class simply encapsulate an email address
- * 
  * @author Ciani Antony, Hernandez Thomas
  */
 public class Person {

@@ -3,6 +3,7 @@ package res.labosmtp.smtp;
 /**
  * This class is used to define some commands to send to an SMTP server to send
  * emails and the response codes that can be sent back by the server.
+ * 
  * @author Ciani Antony, Hernandez Thomas
  */
 public class SMTPProtocol {
@@ -21,7 +22,5 @@ public class SMTPProtocol {
     public static final String MAX_RCPT_REACHED = "452";// Maximum number of recipients has been reached
     public static final String INVALID_RCPT = "550";    // The destination address is invalid
     public static final String BANNED_FROM_SERVER = "554"; // Permanent error, used instead of 220 for the blacklisted hosts
-    
-
     
 }

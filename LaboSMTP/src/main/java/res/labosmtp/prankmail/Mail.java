@@ -7,7 +7,6 @@ import java.util.LinkedList;
  * The sender address, the various recipients addresses, the subject of the message
  * and the message itself.
  * 
- * 
  * @author Ciani Antony, Hernandez Thomas
  */
 public class Mail {
