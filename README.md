@@ -2,7 +2,6 @@
 
 ## CIANI Antony, HERNANDEZ Thomas
 
-![trollface](figures/Trollface.png)
 
 ## Description
 
@@ -18,11 +17,11 @@ Here is a simple exemple: consider that the program generates a group G from a l
 
 In order to run a prank campaign, you need to configure the following files:
 
-- appconfig.properties
+- **appconfig.properties**
 
 	this file contains the following fields:
 
-	![protocol](figures/protocol.png)
+	![protocol](figures/protocol.PNG)
 
 	*smtpserveraddress*: the address of the SMTP server you want to use
 	
@@ -34,15 +33,15 @@ In order to run a prank campaign, you need to configure the following files:
 
 	*messagespath*: the file that contains the text of the mails.
 
-- emails.txt
+- **emails.txt**
 
 	this file contains the e-mail addresses of your victims. You just need to write your own addresses. The only condition is to write one address per line.
 
-- messages.txt
+- **messages.txt**
 
 	this files contains the messages you will send to your victims. You write your own messages but the file must have this format:
 
-	![messages](figures/messages.png)
+	![messages](figures/messages.PNG)
 
 	where the first line is the subject and each message must be seperated with ////
 
@@ -62,7 +61,7 @@ Moreover, the next two classes need a special focus regarding their responsibili
 
 Here below you can see an exemple of dialogue between our client and a SMTP server:
 
-![dialogue](figures/dialogue.png)
+![dialogue](figures/dialogue.PNG)
   
 
 
