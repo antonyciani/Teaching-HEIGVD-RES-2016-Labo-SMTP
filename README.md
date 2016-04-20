@@ -101,4 +101,4 @@ If you want to experiment with our tool, without "really" sending mails immediat
 
 ## Disclaimer
 
-This application has been developed for educational purposes only. The authors disclaim any responsibility fromd damage it may cause by using it with servers you are not allowed to use and by causing collateral damages such as losing all your friends because they don't have enough sense of humor or that your pranks where really bad.
+This application has been developed for educational purposes only. The authors disclaim any responsibility from the damage it may cause by using it with servers you are not allowed to use and by causing collateral damages such as losing all your friends because they don't have enough sense of humor or because your pranks where really bad.
