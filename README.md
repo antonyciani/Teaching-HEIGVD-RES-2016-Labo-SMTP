@@ -13,7 +13,7 @@ Basically, you can edit the emails.txt file with your own mailing list, which wi
 
 Here is a simple exemple: consider that the program generates a group G from a list of 4 victims. The group sender is Bob and the recipients are Alice, Mallory and Jean-Kevin. When the prank is played on group G, then one of the fake messages is picked. The program communicates with a SMTP server so that Alice, Mallory and Jean-Kevin receive a mail, which appears to be sent by Bob.
 
-# Installation
+## Installation
 
 - **Easy**
 
@@ -90,16 +90,12 @@ Here below you can see an exemple of dialogue between our client and a SMTP serv
 
 If you want to experiment with our tool, without "really" sending mails immediately, you can first try it with a mock SMTP server. It means that you will be connected to this server instead of a "real" one. Thus, your victims won't receive your emails, but you will be able to read them and check if everything is ready for your prank.
 
-**How to install**
+**Installing MockMock**
 
-1. Click on this link: [https://github.com/tweakers-dev/MockMock](https://github.com/tweakers-dev/MockMock)
-2. Download the MockMock.jar
-3. Unzip it! (remember the directory)
-
-**How to use**
-
-1. Open a terminal and go to the directory where you have unzipped the .jar
-2. Run the following command: `java -jar MockMock.jar `
-3. 
+1. Click on this link: [https://github.com/tweakers-dev/MockMock](https://github.com/tweakers-dev/MockMock/release)
+2. Download the MockMock.jar file
+3. Run the JAR file using this command by opening a terminal in the directory where it is stored. `java -jar MockMock.jar `
+3. This launches and STMP server on port 25 and an HTTP server on port 8282
+4. Open a browser and go to [http://localhost:8282] (http://localhost:8282) to see if you have any new mails!
 
 
