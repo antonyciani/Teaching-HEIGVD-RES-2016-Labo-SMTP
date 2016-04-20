@@ -27,6 +27,9 @@ Here is a simple exemple: consider that the program generates a group G from a l
 
 1. Clone this repo on your computer
 2. Open the Maven project contained in the LaboSMTP folder
+3. Proceed to Configuration step (see below)
+4. Run the project (this will also generate a JAR file)
+5. Enjoy!
 
 ## Configuration
 
