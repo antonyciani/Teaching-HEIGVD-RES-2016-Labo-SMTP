@@ -69,7 +69,7 @@ Here below you can see the class diagram of our implementation:
 
 ![diagram](figures/diagram.jpg)
 
-Three distincts group are showed on this diagram, depending on the classes' job. On the left, all the classes around our main class (PrankMailGenerator) are dedicated to the generation of the prank mails. On the top right, the ClientSMTP class manages the connexion to a SMTP server with the help of our SMTP protocol. The class that contains our protocol is not visible on the diagram because it only contains static Strings which represent the behavior of our protocol. On the bottom right, the AppConfigurator is the tool that can extract all the informations needed in order to generate a prank.
+Three distincts group are showed on this diagram, depending on the classes' job. On the left, all the classes around our main class (PrankMailGenerator) are dedicated to the generation of the prank mails. On the top right, the ClientSMTP class manages the connexion to a SMTP server with the help of our SMTPProtocol class which contains some of the specs of the SMTP protocol (not visible on diagram). On the bottom right, the AppConfigurator is the tool that can extract all the informations needed in order to generate a prank from the configurations files.
 
 Moreover, the next few classes need a special focus regarding their responsibilities in our implementation:
 
@@ -77,7 +77,7 @@ Moreover, the next few classes need a special focus regarding their responsibili
 
 - *PrankMailGenerator*: the main program who first reads the configuration file and do the setup. Then, it forms random groups depending on the properties and if the number of emails addresses is not enough (less than 3) it stops and warns the user. Finally, a prank is generated with a random message and sent with our SMTP client.
 
-- *ClientSMTP*: allows a connection to a SMTP server in order to send emails. Once connected, our SMTP protocol "like" is used to perform the job and verify its good behavior.
+- *ClientSMTP*: allows a connection to a SMTP server in order to send emails. Once connected, its is used to send the prank emails and verify the responses of the server and its good behavior to see if the mail is well sent.
 
 - *Prank*: Generates a prank email. It takes a group, select a random message from a list and build the resulting Mail object.
 
